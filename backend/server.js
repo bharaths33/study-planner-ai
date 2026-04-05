@@ -188,7 +188,8 @@ app.get("/", (req, res) => {
 });
 
 app.post("/api/auth/signup", async (req, res) => {
-  const { email, password } = req.body;
+  const email = req.body?.email?.trim().toLowerCase();
+  const password = req.body?.password;
 
   if (!email || !password) {
     res.status(400).json({ message: "Email and password are required." });

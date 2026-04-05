@@ -1,7 +1,11 @@
 import { useState } from "react";
 import portalLogo from "./assets/hero.png";
 
-const API_BASE_URL = import.meta.env.VITE_API_BASE_URL ?? "";
+const API_BASE_URL =
+  import.meta.env.VITE_API_BASE_URL ??
+  import.meta.env.VITE_API_URL ??
+  "http://localhost:5000";
+const API_TARGET_LABEL = API_BASE_URL || "this site";
 const COLLEGE_NAME = "Student Study Portal";
 
 function getErrorMessage(path, responseText) {
@@ -44,7 +48,7 @@ async function postJson(path, payload) {
     return data;
   } catch (error) {
     if (error instanceof TypeError) {
-      throw new Error("Backend server is not running on http://localhost:5000.");
+      throw new Error(`Unable to connect to the backend at ${API_TARGET_LABEL}. Make sure the backend server is running and the API URL is correct.`);
     }
 
     throw error;

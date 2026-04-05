@@ -4,7 +4,10 @@ import portalLogo from "./assets/hero.png";
 
 const STORAGE_KEY = "study-planner-user";
 const LEGACY_STORAGE_KEY = "user";
-const API_BASE_URL = import.meta.env.VITE_API_BASE_URL ?? "";
+const API_BASE_URL =
+  import.meta.env.VITE_API_BASE_URL ??
+  import.meta.env.VITE_API_URL ??
+  "http://localhost:5000";
 const COLLEGE_NAME = "Student Study Portal";
 
 function readStoredUser() {
